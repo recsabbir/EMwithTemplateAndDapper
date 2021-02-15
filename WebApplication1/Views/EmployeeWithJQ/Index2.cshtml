@@ -1,0 +1,85 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<style type="text/css">
+    #tbl {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 70%;
+    }
+
+        #tbl td, #tbl th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        #tbl tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #tbl tr:hover {
+            background-color: #ddd;
+        }
+
+        #tbl th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+</style>
+
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Emplyees With JQ</title>
+    <script src="Scripts/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div>Employees</div>
+
+    <table id="tbl">
+        <tr>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+    </table>
+
+</body>
+</html>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        GetData();
+    });
+
+    function GetData() {
+        $.ajax({
+            url: 'WebForm1.aspx/GetEmpData',
+            type: 'post',
+            contentType: 'application/json;charset=utf-8',
+            dataType: 'json',
+            data: "{}",
+            success: function (_data) {
+                _data = JSON.parse(_data.d);
+                $("#tbl").find("tr:gt(0)").remove();
+                for (var i = 0; i < _data.length; i++) {
+                    $("#tbl").append('<tr><td>' + _data[i].name + '</td> <td><input type="button" id="btnedit" value="Edit" onclick="EditData(' + _data[i].id + ')" /></td>  <td><input type="button" id="btndelete" value="Delete" onclick="DeleteData(' + _data[i].id + ')" /></td> </tr>');
+                }
+
+            },
+            error: function () {
+                alert("Get Error");
+            }
+
+        });
+
+</script>
+
+

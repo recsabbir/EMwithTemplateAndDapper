@@ -1,0 +1,78 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Content/CustomStyle.css" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+</head>
+<body>
+    <div class="container-sm">
+        
+        <div class="row justify-content-center mt-5">
+            <div class="col-md-4 loginPageBrandName mb-2 pt-1">
+                <a href="~/"><i class="fa fa-circle-o-notch fa-1x"></i> Employee Management</a>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-4 loginForm">
+                
+                <form method="POST" action="~/Home/LoginRequest">
+                    <div class="form-row justify-content-center">
+                        <div class="col-md-8 px-0 py-1">
+                            <span class="fa-stack fa-1x"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-sign-in fa-stack-1x"></i></span> <span>Log In</span>
+                        </div>
+                    </div>
+
+                    <div class="form-row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label for="loginEmail">Email</label>
+                                <input type="email" class="form-control fa fa-align-right" id="loginEmail" aria-describedby="emailHelp" name="email" placeholder="Email" autocomplete="off" required>
+                                <small id="emailHelp" class="form-text text-muted">Enter your registered email.</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row justify-content-center">
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label for="loginPassword">Password</label>
+                                <input type="password" class="form-control" id="loginPassword" aria-describedby="passwordHelp" name="password" placeholder="Password" required>
+                                <small id="passwordHelp" class="form-text text-muted">Enter your password.</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row justify-content-center">
+                        <div class="col-md-8">
+                            <input type="checkbox" name="rememberMe" class="" value="true"/><small> remember me</small>
+                        </div>
+                    </div>
+
+                    <div class="form-row justify-content-end pb-3">
+                        <div class="col-md-4">
+                            <input type="submit" class="btn-primary" value="Log In" />
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+        
+        <footer class="footer">
+            <p class="text-center mb-0">&copy; @DateTime.Now.Year - VivaSoft Application</p>
+        </footer>
+    </div>
+</body>
+</html>

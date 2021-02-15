@@ -1,0 +1,107 @@
+﻿@model WebApplication1.Models.Employee
+@{ViewBag.PageHTML = "Create New Employee"; }
+
+<div class="col-md-2 sidebar px-0">
+    <div class="nav">
+        <ul class="nav-tabs flex-column navbar-dark myLeftNav">
+            <li class="nav-item">
+                <a class="nav-link" href="~/"><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-home fa-stack-1x"></i></span> Home</a>
+
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="~/Employees/Create"><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-user-plus fa-stack-1x"></i></span>Create Employee</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="~/employees/"><span class="fa-stack fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-list-ul fa-stack-1x"></i></span> Employee List</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+<div class="col-md-10 bg-light">
+
+    <div class="row">
+        <div class="col">
+
+        </div>
+    </div>
+
+    <div class="body-content">
+        <div class="row">
+            <div class="col-md-7 px-5">
+
+
+                <form method="POST">
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="id" value="@ViewBag.empId">
+                    <div class="form-row justify-content-around">
+                        <div class="col-6">
+                            <input type="text" class="form-control " name="name" placeholder="Name" value="@(Model != null ? Model.name : "" )" required>
+                        </div>
+                        <div class="col-4">
+                            <select class="form-control" name="bgroup">
+                                <option @(Model == null ? "selected" : "" )>Blood Group</option>
+                                <option value="A+" @(Model != null ? Model.bgroup == "A+" ? "selected" : "" : "" )>A+</option>
+                                <option value="A-" @(Model != null ? Model.bgroup == "A-" ? "selected" : "" : "" )>A-</option>
+                                <option value="B+" @(Model != null ? Model.bgroup == "B+" ? "selected" : "" : "" )>B+</option>
+                                <option value="B-" @(Model != null ? Model.bgroup == "B-" ? "selected" : "" : "" )>B-</option>
+                                <option value="AB+" @(Model != null ? Model.bgroup == "AB+" ? "selected" : "" : "" )>AB+</option>
+                                <option value="AB-" @(Model != null ? Model.bgroup == "AB-" ? "selected" : "" : "" )>AB-</option>
+                                <option value="O+" @(Model != null ? Model.bgroup == "O+" ? "selected" : "" : "" )>O+</option>
+                                <option value="O-" @(Model != null ? Model.bgroup == "O-" ? "selected" : "" : "" )>O-</option>
+                            </select>
+                        </div>
+                        <div class="col-2">
+                            <input type="text" class="form-control" placeholder="ID : @ViewBag.empId" disabled readonly />
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="form-row justify-content-around">
+                        <div class="col-6">
+                            <input type="text" class="form-control" name="nid" placeholder="National ID Number" value="@(Model != null ? Model.nid : "" )">
+                        </div>
+                        <div class="col-2">
+                            <input type="text" class="form-control" placeholder="DOB :" disabled readonly />
+                        </div>
+                        <div class="col-4">
+                            <input type="date" class="form-control" id="dateOfBirth" name="dob" value="@(Model != null ? Convert.ToDateTime(Model.dob).ToString("yyyy-MM-dd") : "" )">
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="form-row justify-content-around">
+                        <div class="col-6">
+                            <input type="email" class="form-control" name="email" placeholder="Email Address" value="@(Model != null ? Model.email : "" )">
+                        </div>
+                        <div class="col-6">
+                            <input type="text" class="form-control" name="phone" placeholder="Phone Number" value="@(Model != null ? Model.phone : "" )">
+                        </div>
+
+
+                    </div>
+                    <br>
+                    <div class="form-row justify-content-around">
+                        <div class="col-6">
+                            <input type="text" class="form-control" name="address" placeholder="Present Address" value="@(Model != null ? Model.address : "" )">
+                        </div>
+                        <div class="col-6">
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="form-row justify-content-center">
+                        <div class="col-12">
+                            <center><input type="submit" class="btn btn-primary" value="CREATE"></center>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+    </div>

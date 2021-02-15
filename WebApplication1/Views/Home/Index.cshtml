@@ -1,0 +1,581 @@
+﻿@{ ViewBag.Title = "Home|Employee Management";}
+
+
+<div class="col-md-2 sidebar px-0">
+    <div class="nav">
+    <ul class="nav-tabs myLeftNav flex-column">
+        <li class="nav-item">
+            <a class="nav-link active" href="~/"><span class="fa-stack fa-1x"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-home fa-stack-1x"></i></span> Home</a>
+
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"><span class="fa-stack fa-1x"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-user-plus fa-stack-1x"></i></span>Create Employee</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#"><span class="fa-stack fa-1x"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-list-ul fa-stack-1x"></i></span> Employee List</a>
+        </li>
+    </ul>
+    </div>
+</div>
+
+<div class="col-md-10">
+
+
+    <div class="body-content">
+        <!--- Employee Count--->
+
+        <div class="row">
+            <div class="col-md-9 px-5">
+                <div>
+                    <i class="fa fa-users fa-lg" aria-hidden="true"></i>&nbsp; Total Employee : @ViewBag.totalEmployee
+                </div>
+            </div>
+        </div>
+
+
+        <!--- Employee Create--->
+        <div class="row">
+            <div class="col px-5 pt-5">
+                <h5>Create Employee</h5>
+            </div>
+        </div>
+
+        <div class="row pt-3">
+            <div class="col-md-12 px-5">
+
+                <form id="employeeCreateForm">
+
+                    <input type="hidden" name="id" id="createEmployeeId" value="0">
+
+                    <div class="row justify-content-around">
+
+                        <div class="col-md-9">
+
+                            <div class="form-row justify-content-around">
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="createEmployeeName">Name</label>
+                                        <input type="text" class="form-control" id="createEmployeeName" aria-describedby="nameHelp" name="name" placeholder="Enter Name" required>
+                                        <small id="nameHelp" class="form-text text-muted">Enter your full name.</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="createEmployeeBgroup">Blood Group</label>
+                                        <select class="form-control" id="createEmployeeBgroup" aria-describedby="bgroupHelp" name="bgroup">
+                                            <option value="" selected>Blood Group</option>
+                                            <option value="A+">A+</option>
+                                            <option value="A-">A-</option>
+                                            <option value="B+">B+</option>
+                                            <option value="B-">B-</option>
+                                            <option value="AB+">AB+</option>
+                                            <option value="AB-">AB-</option>
+                                            <option value="O+">O+</option>
+                                            <option value="O-">O-</option>
+                                        </select>
+                                        <small id="bgroupHelp" class="form-text text-muted">Select your blood group.</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="createEmployeeDob">Date Of Birth</label>
+                                        <input type="date" class="form-control" id="createEmployeeDob" aria-describedby="dobHelp" name="dob" value="">
+                                        <small id="dobHelp" class="form-text text-muted">Select your date of birth.</small>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="form-row justify-content-around">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="createEmployeeNID">NID Number</label>
+                                        <input type="text" class="form-control" id="createEmployeeNID" aria-describedby="nidHelp" name="nid" placeholder="Enter NID Number">
+                                        <small id="nidHelp" class="form-text text-muted">Enter your National ID number.</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="createEmployeePhone">Phone Number</label>
+                                        <input type="text" class="form-control" id="createEmployeePhone" aria-describedby="phoneHelp" name="phone" placeholder="Enter Phone Number">
+                                        <small id="phoneHelp" class="form-text text-muted">Enter your phone number.</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-row justify-content-around">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="createEmployeeEmail">Email Address</label>
+                                        <input type="text" class="form-control" id="createEmployeeEmail" aria-describedby="emailHelp" name="email" placeholder="Enter Email Address" required>
+                                        <small id="emailHelp" class="form-text text-muted">Enter your email address.</small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="createEmployeeAddress">Present Address</label>
+                                        <input type="text" class="form-control" id="createEmployeeAddress" aria-describedby="addressHelp" name="address" placeholder="Enter Present Address">
+                                        <small id="addressHelp" class="form-text text-muted">Enter your present address.</small>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-3">
+
+                            <div class="row justify-content-end">
+
+                                <div class="col-md-9">
+                                    <div id="createEmployeeImage">
+                                        <img src="/Content/Logo/Employee.jpg" id="createEmployeeImageThumbnai" class="img-rounded employee-photo" alt="Cinque Terre">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row justify-content-end">
+                                <div class="col-md-9">
+                                    <div class="custom-file image-uploader">
+                                        <input type="file" class="custom-file-input" id="customFile" name="ImageFile">
+                                        <label class="custom-file-label" for="customFile">Change</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </form>
+
+                <div class="form-row justify-content-around">
+
+                    <div class="col-md-2">
+                        <input type="button" class="btn btn-primary textsm" id="buttonCreateEmployee" value="CREATE">
+                    </div>
+                    <div class="col-md-10">
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+        <hr>
+
+        <!--- Employee DataTable--->
+        <div class="row">
+            <div class="col px-5 pt-5">
+                <h5>Employee List</h5>
+            </div>
+        </div>
+        <div class="row pt-3">
+            
+
+            <div class="col-md-12 px-5">
+                @*<a class="btn btn-danger trigger-btn  textsm" href="#DeleteModal" data-toggle="modal"><i class="fa fa-trash fa-fw" aria-hidden="true"></i>&nbsp;Delete</a>*@
+                
+                <!---------Delete Modal------------>
+                <div id="DeleteModal" class="modal fade">
+                    <input type="hidden" id="selectedDeleteId" value="0" />
+                    <div class="modal-dialog modal-confirm">
+                        <div class="modal-content">
+                            <div class="modal-header flex-column">
+                                <div>
+                                    <i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>&nbsp;Are you sure?
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <p>Do you really want to delete these records? <br> This process cannot be undone.</p>
+                            </div>
+                            <div class="modal-footer justify-content-center">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <a class="btn btn-danger" onclick="DeleteEmployee()">Delete</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!---------Delete Modal Ends------------>
+                
+    
+                <!---------Set Role Modal------------>
+                <div id="SetRoleModal" class="modal fade">
+                    <input type="hidden" id="selectedSetRoleId" value="0" />
+                    <div class="modal-dialog modal-confirm">
+                        <div class="modal-content">
+                            <div class="modal-header flex-column">
+                                <div>
+                                    <i class="fa fa-cog fa-2x" aria-hidden="true"></i>&nbsp;Set Role
+                                </div>
+                            </div>
+                            <div class="modal-body">
+
+                            </div>
+                            <div class="modal-footer justify-content-center">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                <a class="btn btn-primary" onclick="SetRole()">Update</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!---------Set Role Modal Ends------------>
+
+
+                <table id="myTable" class="table table-striped table-hover">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">#ID</th>
+                            <th scope="col">Photo</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    </tbody>
+
+                </table>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+    @section scripts{
+        <script>
+            $(document).ready(function () {
+                
+                GetData();
+                $("#buttonCreateEmployee").click(function () {
+                    SaveEmployee();
+                });
+
+                $("#customFile").on("change", function () {
+                    var fileName = $(this).val().split("\\").pop();
+                    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+                    
+                });
+
+                $("#employeeCreateForm :input").change(function () {
+                    $("#employeeCreateForm").data("changed", true);
+                    //console.log("Input Changed");
+                    //console.log($("#createEmployeeName").val() + " : " + $("#createEmployeeName").val().charCodeAt(0));
+                });
+                
+
+            });
+
+
+            function SaveEmployee() {
+                var id = $("#createEmployeeId").val();
+
+                if (ValidateEmployee()) {
+                    if (id == "0") {
+                        CreateEmployee();
+                    } else {
+                        UpadateEmployee();
+                    }
+                }
+            }
+
+
+            function CreateEmployee() {
+                var data = $('#employeeCreateForm').serializeArray();
+                var obj = {};
+
+                $.map(data, function (n, i) {
+                    obj[n['name']] = n['value'];
+                }); 
+
+                console.log("BOJ Serialized :", obj);
+                var formData = new FormData();
+
+                for (var prop in obj) {
+                    console.log("property", prop);
+                    console.log("value", obj[prop]);
+                    if (!obj.hasOwnProperty(prop)) continue;
+                    formData.append(prop, obj[prop]);
+                }
+                formData.append("ImageFile", document.getElementById('customFile').files[0]);
+                
+                $.ajax({
+                    url: "/EmployeeWithJQ/CreateEmployee",
+                    type: 'POST',
+                    method: 'POST',
+                    contentType: false,
+                    processData: false,
+                    //dataType: "json",
+                    data: formData,
+                    success: function (_data) {
+                        console.log("Employee Created");
+                        location.reload(true);
+                    },
+                    error: function (res) {
+                        console.log(res);
+                        location.reload(true);
+                    }
+                });
+            }
+
+
+            function UpadateEmployee() {
+                console.log("Udate Employee Triggered");
+
+                if ($("#employeeCreateForm").data("changed")) {
+                    //console.log("Inside Update: Input changed");
+
+                    var data = $('#employeeCreateForm').serializeArray();
+                    var obj = {};
+
+                    $.map(data, function (n, i) {
+                        obj[n['name']] = n['value'];
+                    });
+
+                    console.log("BOJ Serialized :", obj);
+                    var formData = new FormData();
+
+                    for (var prop in obj) {
+                        console.log("property", prop);
+                        console.log("value", obj[prop]);
+                        if (!obj.hasOwnProperty(prop)) continue;
+                        formData.append(prop, obj[prop]);
+                    }
+                    formData.append("ImageFile", document.getElementById('customFile').files[0]);
+
+                    $.ajax({
+                        url: "/EmployeeWithJQ/UpdateEmployee",
+                        type: 'POST',
+                        method: 'POST',
+                        contentType: false,
+                        processData: false,
+                        data: formData,
+                        success: function (_data) {
+                            console.log("Employee Updated");
+                            location.reload(true);
+                        },
+                        error: function (res) {
+                            console.log(res);
+                            location.reload(true);
+                        }
+                    });
+
+                } else {
+                    location.reload(false);
+                }
+                
+
+
+            }
+
+
+            function GetData() {
+                $.ajax({
+                    url: '/EmployeeWithJQ/GetEmployees',
+                    type: 'get',
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: 'json',
+                    data: "{}",
+                    success: function (_data) {
+                        var abc = "";
+                        for (var i = 0; i < _data.length; i++) {
+
+                            abc += '<tr><th scope="row">' + _data[i].id + '</th><td><img src="/Content/';
+
+                            if (_data[i].pic === null) {
+                                abc += 'Logo/Employee.jpg"';
+                            }
+                            else {
+                                abc += 'Employees/' + _data[i].pic + '"';
+                            }
+
+                            abc += '" class="img-thumbnail datatable-employee-photo" alt="Cinque Terre"></td><td>' + _data[i].name + '</td> <td>' + _data[i].email + '</td> <td>' + _data[i].phone + '</td>';
+                            abc += '<td><button class="btn btn-primary textsm" onclick="GetEmployee(' + "'" + _data[i].id + "'" + ')"><i class="fa fa-pencil fa-fw" aria-hidden="true"></i>&nbsp;Edit</button> ';
+                            if (_data[i].Users.length == 0) {
+                                //console.log(_data[i].Users.length);
+                                abc += '<a class="btn btn-primary trigger-btn  textsm" onclick="SelectEmployeeID(' + "'" + _data[i].id + "'" + ')" href="#SetRoleModal" data-toggle="modal"><i class="fa fa-cog fa-fw" aria-hidden="true"></i>&nbsp;Role</a> ';
+                            }
+                            
+                            abc += '<a class="btn btn-danger trigger-btn  textsm" onclick="SelectEmployeeID(' + "'" + _data[i].id + "'" + ')" href="#DeleteModal" data-toggle="modal"><i class="fa fa-trash fa-fw" aria-hidden="true"></i>&nbsp;Delete</a></td ></tr> ';
+                            
+                            
+                        }
+
+                        $("#myTable tbody").html(abc);
+
+                        $('#myTable').DataTable({
+                            "pageLength": 5,
+                            "lengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]]
+                        });
+                       
+                    },
+                    error: function (res) {
+                        console.log(res);
+                    }
+                });
+            }
+
+
+            function GetEmployee(_id) {
+                console.log("GetEmployee method called");
+                $.ajax({
+                    url:'/EmployeeWithJQ/GetEmployee/' + _id,
+                    type:'post',
+                    contentType: 'application/json;charset=utf-8',
+                    dataType: 'json',
+                    success: function (_data) {
+
+                        if (_data.pic !== null) {
+                            
+                            document.getElementById("createEmployeeImageThumbnai").src = "/Content/Employees/" + _data.pic;
+                        } else {
+                            document.getElementById("createEmployeeImageThumbnai").src = "/Content/Logo/Employee.jpg";
+                        }
+
+                        var date;
+                        var DOB;
+
+                        if (_data.dob !== null) {
+                            date = new Date(parseInt(_data.dob.substr(6)));
+                            
+                            DOB = date.getFullYear();
+
+                            if (date.getMonth() < "9") {
+                                DOB += "-0" + (date.getMonth() + 1);
+                            } else {
+                                DOB += "-" + (date.getMonth() + 1);
+                            }
+
+                            if (date.getUTCDate() < "9") {
+                                DOB += "-0" + (date.getUTCDate() + 1);
+                            } else {
+                                DOB += "-" + (date.getUTCDate() + 1);
+                            }
+                            $('#createEmployeeDob').val(DOB);
+                        }
+
+
+                        $('#createEmployeeId').val(_data.id);
+                        $('#createEmployeeName').val(_data.name);
+                        $('#createEmployeeBgroup').val(_data.bgroup);
+                        $('#createEmployeeNID').val(_data.nid);
+                        $('#createEmployeePhone').val(_data.phone);
+                        $('#createEmployeeEmail').val(_data.email);
+                        $('#createEmployeeAddress').val(_data.address);
+                        $('#buttonCreateEmployee').val("UPDATE");
+                        
+                    },
+                    error: function (res) {
+                        console.log(res);
+                    }
+                });
+            }
+
+
+
+            function SelectEmployeeID(_id) {
+                
+                $('#selectedDeleteId').val(_id);
+
+            }
+
+
+            function DeleteEmployee() {
+                var _id = $('#selectedDeleteId').val();
+                $.ajax({
+                    url: "/EmployeeWithJQ/DeleteEmployee/" + _id,
+                    type: 'POST',
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function (_data) {
+                        location.reload(true);
+                    },
+                    error: function (res) {
+                        console.log(res);
+                    }
+                });    
+            }
+
+            function ValidateEmployee() {
+                if (!ValidateName()) {
+                    //console.log("Within ValidateEmployee : Name Not Validated");
+                    $('#nameHelp').html("Inappropiate Name.");
+                    $('#nameHelp').removeClass("text-muted");
+                    $('#nameHelp').addClass("text-danger");
+
+                } else {
+                    $('#nameHelp').html(" ");
+
+                }
+                if (!ValidateEmail()) {
+                    //console.log("Within ValidateEmployee : Email Not Validated");
+                    $('#emailHelp').html("Inappropiate Email.");
+                    $('#emailHelp').removeClass("text-muted");
+                    $('#emailHelp').addClass("text-danger");
+                } else {
+                    $('#emailHelp').html(" ");
+                }
+
+                if (ValidateName() && ValidateEmail()) {
+                    //console.log("VALIDATED");
+                    return true;
+                } else {
+                    //console.log("NOT VALIDATED");
+                    return false;
+                }
+                
+            }
+
+            function ValidateName() {
+                var _name = $('#createEmployeeName').val();
+                _name = _name.trim();
+
+                if (_name === "") {
+                    return false;
+                } else {
+                    return true;
+                }
+                
+            }
+
+            function ValidateEmail() {
+                var _email = $('#createEmployeeEmail').val();
+                _email = _email.trim();
+
+                if (_email === null) {
+                    return false;
+                } else {
+
+                    var _emailArr = _email.split("@@");
+                    if (_emailArr.length == 2) {
+
+                        //for (var i = 0; i < _emailArr[0].length; i++) {
+                        //    if()
+                        //}
+                        if ((_emailArr[1].length - _emailArr[1].lastIndexOf(".com")) == 4) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+
+                    } else {
+                        return false;
+                    }
+
+
+                    //return true;
+                }
+
+            }
+
+
+        </script>
+    }
+
+

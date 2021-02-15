@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css" />
+    <link rel="stylesheet" href="~/Content/CustomStyle.css" />
+    <link rel="stylesheet" href="~/Content/DataTableStyle.css" />
+    <script src="~/Scripts/DataTableJQ.js"></script>
+
+
+</head>
+<body class="bg-light">
+    <nav class="navbar sticky-top navbar-light bg-white shadow-sm">
+        <ul class="navbar-nav">
+            <li><a class="navbar-brand brandName" href="~/"><i class="fa fa-circle-o-notch fa-lg"></i> Employee <br> Management</a></li>
+        </ul>
+        <ul class="navbar-nav">
+            <a class="nav-link text-dark loginButton" href="~/Login">Log In</a></li>
+        </ul>
+    </nav>
+    
+    <div class="container-fluid">
+        <div class="body-wrapper">
+            <div class="row">
+
+                @RenderBody()
+
+
+            </div>
+        </div>
+    </div>
+        
+    
+    <footer class="footer">
+        <p class="text-center mb-0">&copy; @DateTime.Now.Year - VivaSoft Application</p>
+    </footer>
+
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @*<script src="~/Scripts/moment.min.js"></script>*@
+    
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
