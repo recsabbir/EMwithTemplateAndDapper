@@ -35,6 +35,11 @@
     <script>
         $(document).ready(function () {
             GetData();
+
+            //Activating SideNav
+            $("#sideNavEmployee").addClass("active");
+            $("#sideNavEmployeeList").addClass("active");
+
             $("#customFile").on("change", function () {
                 //if (!($(this).val() == "")) {
                 //    var fileName = $(this).val().split("\\").pop().slice(0, 12);

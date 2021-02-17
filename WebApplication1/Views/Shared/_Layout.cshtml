@@ -174,22 +174,22 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li class="active">
+                        <li class="" id="sideNavHome">
                             <a href="~/Home">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard
                             </a>
                         </li>
-                        <li class="has-sub">
+                        <li class="has-sub" id="sideNavEmployee">
                             <a class="js-arrow" href="#">
                                 <i class="fas fa-user"></i>Employees
                             </a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
-                                <li>
+                                <li id="sideNavEmployeeCreate">
                                     <a href="~/Employees/Create">
                                         <i class="fas fa-user-plus"></i>Create
                                     </a>
                                 </li>
-                                <li>
+                                <li id="sideNavEmployeeList" class="">
                                     <a href="~/Employees">
                                         <i class="fas fa-list-ul"></i>List
                                     </a>
@@ -284,9 +284,9 @@
                 <div class="section__content section__content--p30">
                     <div class="container-fluid">
                         <div class="header-wrap">
-                            <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="text" name="search" placeholder="Search for datas &amp; reports..." />
-                                <button class="au-btn--submit" type="submit">
+                            <form class="form-header">
+                                <input class="au-input au-input--xl" type="text" name="search" placeholder="I search nothing..." />
+                                <button class="au-btn--submit">
                                     <i class="zmdi zmdi-search"></i>
                                 </button>
                             </form>
@@ -624,9 +624,9 @@
                                     </div>
 
                                 </div>
-                                <div class="modal-footer justify-content-center">
+                                <div class="modal-footer justify-content-end">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                    <input type="button" class="btn btn-success" id="buttonUpdateEmployee" value="UPDATE">
+                                    <input type="button" class="btn btn-success ml-3" id="buttonUpdateEmployee" value="UPDATE">
                                 </div>
                             </div>
                         </div>
