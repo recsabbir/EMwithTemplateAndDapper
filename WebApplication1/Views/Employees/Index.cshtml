@@ -41,10 +41,6 @@
             $("#sideNavEmployeeList").addClass("active");
 
             $("#customFile").on("change", function () {
-                //if (!($(this).val() == "")) {
-                //    var fileName = $(this).val().split("\\").pop().slice(0, 12);
-                //    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-                //}
                 var fileName = $(this).val().split("\\").pop().slice(0, 6);
                 $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 
@@ -58,13 +54,17 @@
                 SaveEmployee();
             });
 
+            $("#buttonDeleteEmployee").click(function () {
+                DeleteEmployee();
+            });
+
 
         });
 
 
         function GetData() {
             $.ajax({
-                url: '/EmployeeWithJQ/GetEmployees',
+                url: '/Employees/GetEmployees',
                 type: 'get',
                 contentType: 'application/json;charset=utf-8',
                 dataType: 'json',
@@ -109,9 +109,9 @@
         }
 
         function GetEmployee(_id) {
-            console.log("GetEmployee method called");
+            
             $.ajax({
-                url: '/EmployeeWithJQ/GetEmployee/' + _id,
+                url: '/Employees/GetEmployee/' + _id,
                 type: 'post',
                 contentType: 'application/json;charset=utf-8',
                 dataType: 'json',
@@ -170,23 +170,27 @@
         }
 
         function DeleteEmployee() {
+            //console.log("Delete Employee Triggered");
             var _id = $('#selectedDeleteId').val();
             $.ajax({
-                url: "/EmployeeWithJQ/DeleteEmployee/" + _id,
+                url: "/Employees/DeleteEmployee/" + _id,
                 type: 'POST',
                 contentType: 'application/json; charset=utf-8',
                 dataType: 'json',
                 success: function (_data) {
+                    //console.log("Delete Employee Success");
                     location.reload(true);
                 },
                 error: function (res) {
-                    console.log(res);
+                    //console.log("Delete Employee Error");
+                    //console.log(res);
+                    location.reload(true);
                 }
             });
         }
 
         function SaveEmployee() {
-            console.log("SaveEmployee triggered");
+            //console.log("SaveEmployee triggered");
             var id = $("#updateEmployeeId").val();
 
             if (ValidateEmployee()) {
@@ -197,7 +201,7 @@
         }
 
         function UpdateEmployee() {
-            console.log("Udate Employee Triggered");
+            //console.log("Udate Employee Triggered");
 
             if ($("#employeeUpdateForm").data("changed")) {
                 //console.log("Inside Update: Input changed");
@@ -221,7 +225,7 @@
                 formData.append("ImageFile", document.getElementById('customFile').files[0]);
 
                 $.ajax({
-                    url: "/EmployeeWithJQ/UpdateEmployee",
+                    url: "/Employees/UpdateEmployee",
                     type: 'POST',
                     method: 'POST',
                     contentType: false,

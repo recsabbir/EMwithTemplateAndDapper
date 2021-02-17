@@ -9,11 +9,11 @@ namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        private EMEntity db = new EMEntity();
+        //private EMEntity db = new EMEntity();
 
         public ActionResult Index()
         {
-            ViewBag.totalEmployee = db.Employees.ToList().Count;
+            //ViewBag.totalEmployee = db.Employees.ToList().Count;
 
             return View("NewIndex");
         }
@@ -37,12 +37,6 @@ namespace WebApplication1.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult LoginRequest(User user)
-        {
-            
-
-            return View();
-        }
+        
     }
 }
