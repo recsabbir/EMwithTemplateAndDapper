@@ -100,7 +100,7 @@ namespace WebApplication1.Controllers
 
         //POST: EmployeesWithJQ/CreateEmployee
         [HttpPost]
-        public JsonResult CreateEmployee(Employee employee)
+        public bool CreateEmployee(Employee employee)
         {
             var employeeList = db.Employees.ToList();
             int newId = 1;
@@ -122,9 +122,7 @@ namespace WebApplication1.Controllers
                 if (System.IO.File.Exists(Path.Combine(Server.MapPath("~/Content/Employees/"), im)))
                 {
                     // If file found, delete it
-                    
                     System.IO.File.Delete(Path.Combine(Server.MapPath("~/Content/Employees/"), im));
-
                 }
 
 
@@ -138,15 +136,14 @@ namespace WebApplication1.Controllers
                 fileName = Path.Combine(Server.MapPath("~/Content/Employees/"), fileName);
 
                 employee.ImageFile.SaveAs(fileName);
-
-     
             }
 
             db.Employees.Add(employee);
             db.SaveChanges();
-
+            
             //need to send message
-            return Json(employee, JsonRequestBehavior.AllowGet);
+            //return Json(employee, JsonRequestBehavior.AllowGet);
+            return true;
 
         }
 

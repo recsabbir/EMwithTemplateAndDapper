@@ -15,7 +15,7 @@ namespace WebApplication1.Controllers
         {
             ViewBag.totalEmployee = db.Employees.ToList().Count;
 
-            return View();
+            return View("NewIndex");
         }
 
         public ActionResult About()
