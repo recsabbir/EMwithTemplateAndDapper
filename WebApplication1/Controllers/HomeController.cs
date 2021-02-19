@@ -18,23 +18,16 @@ namespace WebApplication1.Controllers
             return View("NewIndex");
         }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
 
         public ActionResult Login()
         {
             return View();
+        }
+
+        [HttpPost]
+        public string Login( Employee employee)
+        {
+            return "Logged In";
         }
 
         

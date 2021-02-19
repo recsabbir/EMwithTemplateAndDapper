@@ -33,6 +33,8 @@
 
     <!-- Main CSS-->
     <link rel="stylesheet" href="~/Content/DataTableStyle.css" />
+    <link rel="stylesheet" href="~/Content/toastr.css" />
+    <link rel="stylesheet" href="~/Content/jquery-ui.css" />
     <link href="~/Content/theme.css" rel="stylesheet" media="all">
     <script src="~/vendor/jquery-3.2.1.min.js"></script>
     <script src="~/Scripts/DataTableJQ.js"></script>
@@ -179,22 +181,22 @@
                                 <i class="fas fa-tachometer-alt"></i>Dashboard
                             </a>
                         </li>
-                        <li class="has-sub" id="sideNavEmployee">
-                            <a class="js-arrow" href="#">
+                        <li class="" id="sideNavEmployee">
+                            <a class="js-arrow" href="~/Employees">
                                 <i class="fas fa-user"></i>Employees
                             </a>
-                            <ul class="list-unstyled navbar__sub-list js-sub-list">
+                            @*<ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li id="sideNavEmployeeCreate">
-                                    <a href="~/Employees/Create">
+                                    <a href="#">
                                         <i class="fas fa-user-plus"></i>Create
                                     </a>
                                 </li>
-                                <li id="sideNavEmployeeList" class="">
-                                    <a href="~/Employees">
+                                <li id="sideNavEmployeeList">
+                                    <a href="#">
                                         <i class="fas fa-list-ul"></i>List
                                     </a>
                                 </li>
-                            </ul>
+                            </ul>*@
                         </li>
                         @*<li>
                                 <a href="table.html">
@@ -564,13 +566,22 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="col-md-5 pl-1">
+                                                            <div class="col-md-3 pl-1">
                                                                 <div class="form-group">
                                                                     <label for="updateEmployeePhone">Phone Number</label>
                                                                     <input type="text" class="form-control" id="updateEmployeePhone" aria-describedby="uPhoneHelp" name="phone" placeholder="Enter Phone Number">
                                                                     <small id="uPhoneHelp" class="form-text text-muted"> </small>
                                                                 </div>
                                                             </div>
+
+                                                            <div class="col-md-4 pl-1">
+                                                                <div class="form-group">
+                                                                    <label for="updateEmployeeJoiningDate">Joining Date</label>
+                                                                    <input type="date" class="form-control" id="updateEmployeeJoiningDate" aria-describedby="uJoiningDateHelp" name="joining_date" value="">
+                                                                    <small id="uJoiningDateHelp" class="form-text text-muted"> </small>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
 
                                                         <div class="form-row justify-content-start pb-4">
@@ -659,6 +670,8 @@
     <script src="~/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="~/vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="~/vendor/select2/select2.min.js"></script>
+    <script src="~/Scripts/toastr.min.js"></script>
+    <script src="~/Scripts/jquery-ui.js"></script>
 
     <!-- Main JS-->
     <script src="~/Scripts/main.js"></script>

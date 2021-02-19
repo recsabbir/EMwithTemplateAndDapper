@@ -138,10 +138,7 @@
             $("#sideNavEmployeeCreate").addClass("active");
 
             $("#customFile").on("change", function () {
-                //if (!($(this).val() == "")) {
-                //    var fileName = $(this).val().split("\\").pop().slice(0, 12);
-                //    $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
-                //}
+                
                 var fileName = $(this).val().split("\\").pop().slice(0, 12);
                 $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
 

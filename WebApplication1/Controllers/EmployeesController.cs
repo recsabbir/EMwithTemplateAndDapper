@@ -6,6 +6,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Net;
 using System.Web;
+using System.Web.WebPages;
 using System.Web.Mvc;
 using WebApplication1.Models;
 using System.IO;
@@ -101,12 +102,15 @@ namespace WebApplication1.Controllers
                 employee.ImageFile.SaveAs(fileName);
             }
 
-            
+
+
             string sqlQueryStart = "Insert Into Employees (id,";
             string sqlQueryEnd = " Values (" + employee.id + ",";
 
             if (employee.name != null)
             {
+                //string[] empname = employee.name.Trim().Split(' ');
+
                 sqlQueryStart += "name";
                 sqlQueryEnd += "'" + employee.name + "'";
             }
@@ -145,6 +149,20 @@ namespace WebApplication1.Controllers
                 sqlQueryStart += ",pic";
                 sqlQueryEnd += ",'" + employee.pic + "'";
             }
+            if (employee.joining_date != null)
+            {
+                sqlQueryStart += ",joining_date";
+                sqlQueryEnd += ",'" + employee.joining_date.Value.Year + "-" + employee.joining_date.Value.Month + "-" + employee.joining_date.Value.Day + "'";
+            }
+            else
+            {
+                DateTime jDate = DateTime.Now;
+                sqlQueryStart += ",joining_date";
+                sqlQueryEnd += ",'" + jDate.Year + "-" + jDate.Month + "-" + jDate.Day + "'";
+
+            }
+
+
 
             sqlQueryStart += ")";
             sqlQueryEnd += ")";
@@ -210,85 +228,96 @@ namespace WebApplication1.Controllers
             }
 
             string sqlQuery = "Update Employees Set ";
-            int udateCount = 0;
+            int updateCount = 0;
 
             if (emp.name != employee.name)
             {
                 sqlQuery += "name='" + employee.name + "'";
-                udateCount++;
+                updateCount++;
             }
-            if (emp.dob != employee.dob)
+            if (emp.dob != employee.dob && employee.dob != null)
             {
-                if (udateCount > 0)
+                if (updateCount > 0)
                 {
                     sqlQuery += ",";
                 }
                 sqlQuery += "dob='" + employee.dob.Value.Year +"-"+ employee.dob.Value.Month + "-" + employee.dob.Value.Day + "'";
-                udateCount++;
+                updateCount++;
             }
             if (emp.nid != employee.nid)
             {
-                if (udateCount > 0)
+                if (updateCount > 0)
                 {
                     sqlQuery += ",";
                 }
                 sqlQuery += "nid='" + employee.nid + "'";
-                udateCount++;
+                updateCount++;
             }
             if (emp.bgroup != employee.bgroup)
             {
-                if (udateCount > 0)
+                if (updateCount > 0)
                 {
                     sqlQuery += ",";
                 }
                 sqlQuery += "bgroup='" + employee.bgroup + "'";
-                udateCount++;
+                updateCount++;
             }
             if (emp.email != employee.email)
             {
-                if (udateCount > 0)
+                if (updateCount > 0)
                 {
                     sqlQuery += ",";
                 }
                 sqlQuery += "email='" + employee.email + "'";
-                udateCount++;
+                updateCount++;
             }
             if (emp.phone != employee.phone)
             {
-                if (udateCount > 0)
+                if (updateCount > 0)
                 {
                     sqlQuery += ",";
                 }
                 sqlQuery += "phone='" + employee.phone + "'";
-                udateCount++;
+                updateCount++;
             }
             if (emp.address != employee.address)
             {
-                if (udateCount > 0)
+                if (updateCount > 0)
                 {
                     sqlQuery += ",";
                 }
                 sqlQuery += "address='" + employee.address + "'";
-                udateCount++;
+                updateCount++;
             }
             if (emp.pic != im)
             {
-                if (udateCount > 0)
+                if (updateCount > 0)
                 {
                     sqlQuery += ",";
                 }
                 sqlQuery += "pic='" + im + "'";
-                udateCount++;
+                updateCount++;
             }
-
-            sqlQuery += " Where id=" + employee.id;
-
-            using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["EMEntity"].ConnectionString))
+            if (emp.joining_date != employee.joining_date && employee.joining_date != null)
             {
 
-                int rowsAffected = db.Execute(sqlQuery);
+                sqlQuery += "joining_date='" + employee.joining_date.Value.Year + "-" + employee.joining_date.Value.Month + "-" + employee.joining_date.Value.Day + "'";
+                updateCount++;
+                
             }
-            //sqlQuery = "Update Employees Set name='New Employee',dob='1995-9-30',nid=88183453627',bgroup='B+',email='newemployee@gmail.com',phone='01234223232',address='abc Road, Dhaka',pic='New Employee211837057.jpg' Where id=3"
+            
+
+            sqlQuery += " Where id=" + employee.id;
+            if(updateCount > 0)
+            {
+                using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["EMEntity"].ConnectionString))
+                {
+
+                    int rowsAffected = db.Execute(sqlQuery);
+                }
+            }
+            
+
             return true;
         }
 
@@ -319,7 +348,6 @@ namespace WebApplication1.Controllers
             if (System.IO.File.Exists(Path.Combine(Server.MapPath("~/Content/Employees/"), im)))
             {
                 // If file found, delete it
-
                 System.IO.File.Delete(Path.Combine(Server.MapPath("~/Content/Employees/"), im));
 
             }
@@ -341,155 +369,146 @@ namespace WebApplication1.Controllers
             return View("Create");
         }
 
-        //        // POST: Employees/Create
-        //        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        //        [HttpPost]
-        //        [ValidateAntiForgeryToken]
-        //        public ActionResult Create(Employee employee)
-        //        {
-        //            var employeeList = db.Employees.ToList();
-        //            int newId = employeeList.Last().id + 1;
-
-        //            employee.id = newId;
-
-        //            if (employee.name == null || employee.email == null)
-        //            {
-        //                ViewBag.empId = newId;
-
-        //                return View("Create", employee);
-        //            }
-        //            else{
-
-        //            }
-
-        //            db.Employees.Add(employee);
-        //            db.SaveChanges();
-        //            return RedirectToAction("Index");
-
-        //        }
-
-        //        // GET: Employees/Edit/5
-        //        public ActionResult Edit(int? id)
-        //        {
-        //            if (id == null)
-        //            {
-        //                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //            }
-        //            Employee employee = db.Employees.Find(id);
-        //            if (employee == null)
-        //            {
-        //                return HttpNotFound();
-        //            }
-        //            return View("Edit", employee);
-        //        }
-
-        //        // POST: Employees/Edit/5
-        //        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        //        [HttpPost]
-        //        [ValidateAntiForgeryToken]
-        //        public void Edit([Bind(Include = "id,name,dob,nid,bgroup,email,phone,address")] Employee employee)
-        //        {
-        //            if (ModelState.IsValid)
-        //            {
-        //                db.Entry(employee).State = EntityState.Modified;
-        //                db.SaveChanges();
-
-        //                string redir = "/Employees/Edit/" + employee.id;
-        //                Response.Redirect(redir);
-        //            }
-
-        //        }
-
-        //        // POST: Employees/EditPicture/5
-        //        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        //        [HttpPost]
-        //        [ValidateAntiForgeryToken]
-        //        public void EditPicture(Employee emp)
-        //        {
-        //            Employee employee = db.Employees.Find(emp.id);
-        //            //if (employee == null)
-        //            //{
-        //            //    return HttpNotFound();
-        //            //}
-        //            //string rootFolder = @"D:\Temp\Data\";
-        //            string im = employee.pic;
-        //            if (im == null)
-        //            {
-        //                im = "a.jpg";
-        //            }
-        //            if (System.IO.File.Exists(Path.Combine(Server.MapPath("~/Content/Employees/"), im)))
-        //            {
-        //                // If file found, delete it    
-        //                System.IO.File.Delete(Path.Combine(Server.MapPath("~/Content/Employees/"), im));
-
-        //            }
+        // GET: Employees/UpdateSalaryInfo
+        public ActionResult UpdateSalaryInfo()
+        {
+            
+            return PartialView("_AddSalaryInfo");
+        }
 
 
-        //            //string fileName = Path.GetFileNameWithoutExtension(emp.ImageFile.FileName);
-        //            string fileName = employee.name;
-        //            string extension = Path.GetExtension(emp.ImageFile.FileName);
-        //            fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-
-        //            employee.pic = fileName;
-
-        //            fileName = Path.Combine(Server.MapPath("~/Content/Employees/"), fileName);
-
-        //            emp.ImageFile.SaveAs(fileName);
-
-        //            db.Entry(employee).State = EntityState.Modified;
-        //            db.SaveChanges();
-        //            string redir = "/Employees/Edit/" + employee.id;
-
-        //            Response.Redirect(redir);
-
-        //        }
-
-        //        // GET: Employees/Delete/5
-        //        public ActionResult Delete(int? id)
-        //        {
-        //            if (id == null)
-        //            {
-        //                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-        //            }
-        //            Employee employee = db.Employees.Find(id);
-        //            if (employee == null)
-        //            {
-        //                return HttpNotFound();
-        //            }
-        //            return View(employee);
-        //        }
-
-        //        // POST: Employees/Delete/5
-        //        [HttpPost, ActionName("Delete")]
-        //        [ValidateAntiForgeryToken]
-        //        public ActionResult DeleteConfirmed(int id)
-        //        {
-        //            Employee employee = db.Employees.Find(id);
-        //            db.Employees.Remove(employee);
-        //            db.SaveChanges();
-        //            return RedirectToAction("Index");
-        //        }
-
-        //        // POST: Employees/Delete/5
-        //        //[HttpDelete]
-        //        [HttpPost]
-        //        public JsonResult DeleteEmployee(int id)
-        //        {
-        //            string m;
-
-        //            Employee employee = db.Employees.Find(id);
-        //            if (employee == null)
-        //            {
-        //                m = "message : Wrong ID";
-        //                return Json(m, JsonRequestBehavior.AllowGet);
-        //            }
-        //            db.Employees.Remove(employee);
-        //            db.SaveChanges();
-        //            m = "message : success";
-        //            return Json(m, JsonRequestBehavior.AllowGet);
-        //        }
+        // POST: Employees/UpdateSalaryInfo/"id:year-month-salary"
+        [HttpPost]
+        public bool UpdateSalaryInfo(string data)
+        {
+            if (data.Split(':').Length != 2)
+            {
+                return false;
+            }
+            else
+            {
+                if (data.Split(':')[1].Split('-').Length != 3 && !(data.Split(':')[1].Split('-')[2].IsInt()))
+                {
+                    return false;
+                }
+            }
+            //sqlQuery = "Insert Into SalaryInfos (id,employee_id,year,month,salary) Values (1,2,2020,:,2)"
 
 
+            var _empid = data.Split(':')[0];
+            string[] _data = data.Split(':')[1].Split('-');
+            var _year = _data[0];
+            var _month = _data[1];
+            var _salary = _data[2];
+
+
+            int newId = 1;
+            SalaryInfo sinfo;
+            using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["EMEntity"].ConnectionString))
+            {
+
+                sinfo = db.Query<SalaryInfo>("Select * From SalaryInfos").ToList().LastOrDefault();
+            }
+
+            if (sinfo != null)
+            {
+                newId = sinfo.id + 1;
+            }
+
+            using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["EMEntity"].ConnectionString))
+            {
+
+                sinfo = db.Query<SalaryInfo>("Select * From SalaryInfos where employee_id=" + _empid + " AND year=" + _year + " AND month=" + _month ).LastOrDefault();
+            }
+            string sqlQuery;
+
+            if (sinfo != null)
+            {
+                sqlQuery = "Update SalaryInfos Set salary=" + _salary + " WHERE id=" + sinfo.id;
+                using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["EMEntity"].ConnectionString))
+                {
+
+                    int rowsAffected = db.Execute(sqlQuery);
+                }
+            }
+            else
+            {
+                sqlQuery = "Insert Into SalaryInfos (id,employee_id,year,month,salary) Values (" + newId + "," + _empid + "," + _year + "," + _month + "," + _salary + ")";
+                using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["EMEntity"].ConnectionString))
+                {
+                    db.Execute(sqlQuery);
+                }
+            }
+
+            
+
+            return true;
+        }
+
+
+        // GET: Employees/UpdateSalaryInfoEmployees
+        public JsonResult GetSalaryInfoEmployees()
+        {
+            List<Employee> employeeList = new List<Employee>();
+            
+            using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["EMEntity"].ConnectionString))
+            {
+
+                employeeList = db.Query<Employee>("Select id, name From Employees").ToList();
+            }
+
+            List<string> ret = new List<string>();
+            for( int i=0; i< employeeList.Count; i++)
+            {
+                ret.Add(employeeList[i].id + " : " + employeeList[i].name);
+            }
+
+            return Json(ret, JsonRequestBehavior.AllowGet);
+        }
+
+        
+
+        // GET: Employees/GetJoiningDate/5
+        public JsonResult GetJoiningDate(int id)
+        {
+            Employee emp = new Employee();
+
+            using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["EMEntity"].ConnectionString))
+            {
+
+                emp = db.Query<Employee>("Select joining_date From Employees Where id=" + id).FirstOrDefault();
+            }
+
+            
+            return Json(emp, JsonRequestBehavior.AllowGet);
+        }
+
+
+        // GET: Employees/GetJoiningDate/5
+        public JsonResult GetSalaryInfoSalary(string data)
+        {
+            var emp_id = data.Split(':')[0];
+            var year = data.Split(':')[1].Split('-')[0];
+            var month = data.Split(':')[1].Split('-')[1];
+
+            SalaryInfo sinfo = new SalaryInfo();
+
+            using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["EMEntity"].ConnectionString))
+            {
+
+               sinfo = db.Query<SalaryInfo>("Select salary From SalaryInfos Where employee_id=" + emp_id + " AND year=" + year + " AND month=" + month  ).FirstOrDefault();
+            }
+
+            if (sinfo == null)
+            {
+                sinfo = new SalaryInfo();
+                sinfo.salary = 0;
+            }
+            return Json(sinfo, JsonRequestBehavior.AllowGet);
+        }
+
+        //POST: Employees/UpdateSalaryInfos
+        //[HttpPost]
 
 
         //protected override void Dispose(bool disposing)

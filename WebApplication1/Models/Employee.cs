@@ -19,9 +19,13 @@ namespace WebApplication1.Models
         public string phone { get; set; }
         public string address { get; set; }
         public string pic { get; set; }
+        public Nullable<System.DateTime> joining_date { get; set; }
 
         [NotMapped]
         public HttpPostedFileBase ImageFile { get; set; }
+
+        [NotMapped]
+        public List<AnnualSalary> annualSalaries { get; set; }
 
         public Boolean CheckEqual(Employee emp)
         {
