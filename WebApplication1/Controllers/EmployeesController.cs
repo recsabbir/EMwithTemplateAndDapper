@@ -484,7 +484,7 @@ namespace WebApplication1.Controllers
         }
 
 
-        // GET: Employees/GetJoiningDate/5
+        // GET: Employees/GetSalaryInfoSalary/"id:year-month"
         public JsonResult GetSalaryInfoSalary(string data)
         {
             var emp_id = data.Split(':')[0];
@@ -507,8 +507,32 @@ namespace WebApplication1.Controllers
             return Json(sinfo, JsonRequestBehavior.AllowGet);
         }
 
-        //POST: Employees/UpdateSalaryInfos
-        //[HttpPost]
+
+        // GET: Employees/UpdateSalaryInfo
+        public ActionResult ShowSalaryInfo()
+        {
+            List<Employee> emp = new List<Employee>();
+            List<AnnualSalary> sal = new List<AnnualSalary>();
+
+            using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["EMEntity"].ConnectionString))
+            {
+
+                emp = db.Query<Employee>("Select * From Employees").ToList();
+            }
+
+            foreach(var item in emp)
+            {
+                using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["EMEntity"].ConnectionString))
+                {
+
+                    item.annualSalaries = db.Query<AnnualSalary>("SELECT year, SUM(salary) AS sumSalary FROM SalaryInfos WHERE employee_id=" + item.id + " GROUP BY year").ToList();
+                }
+            }
+
+            return PartialView("_ShowSalaryInfo", emp);
+        }
+
+        
 
 
         //protected override void Dispose(bool disposing)

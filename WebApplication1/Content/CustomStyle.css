@@ -133,3 +133,7 @@
     max-height: 45px;
     width: auto;
 }
+
+.table-data-feature .item :hover {
+    background-color: #ff0000;
+}

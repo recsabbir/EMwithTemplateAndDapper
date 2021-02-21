@@ -260,6 +260,7 @@
         $(document).ready(function () {
             GetData();
             GetSalaryInfos();
+            ShowSalaryInfo();
             //SelectSalaryInfo();
             //toastr.info('Are you the 6 fingered man?')
 
@@ -1053,6 +1054,31 @@
             $('#salaryInfoSalaryHelp').removeClass("text-danger");
             $('#salaryInfoSalaryHelp').addClass("text-muted");
         }
+
+        function ShowSalaryInfo() {
+            $.ajax({
+                url: '/Employees/ShowSalaryInfo',
+                type: 'get',
+                contentType: 'application/json;charset=utf-8',
+                //dataType: 'json',
+                //data: "{}",
+                success: function (_data) {
+                    //console.log("GetSalaryInfo Success");
+                    //console.log(_data);
+
+                    $("#salaryInfoViewCardBodyDynamic").html(_data);
+                    //SelectSalaryInfo();
+                    //document.getElementById("#salaryInfoCardBody").innerHTML = _data;
+
+
+                },
+                error: function (res) {
+                    console.log(res);
+                    console.log(res.responseText);
+                }
+            });
+        }
+
 
         //function ClearCreateForm() {
         //    $("#employeeCreateForm").find("input[type=text], input[type=text]").val("");
