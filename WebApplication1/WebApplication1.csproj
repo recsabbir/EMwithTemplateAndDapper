@@ -172,6 +172,12 @@
     <Content Include="Content\theme.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="DataTables-1.10.23\Images\favicon.ico" />
+    <Content Include="DataTables-1.10.23\Images\sort_asc.png" />
+    <Content Include="DataTables-1.10.23\Images\sort_asc_disabled.png" />
+    <Content Include="DataTables-1.10.23\Images\sort_both.png" />
+    <Content Include="DataTables-1.10.23\Images\sort_desc.png" />
+    <Content Include="DataTables-1.10.23\Images\sort_desc_disabled.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\Material-Design-Iconic-Font.svg" />
@@ -548,6 +554,7 @@
     <Content Include="fonts\poppins\poppins-v5-latin-regular.woff2" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <Content Include="DataTables-1.10.23\Images\Sorting icons.psd" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -625,6 +632,10 @@
     <Content Include="Views\EmployeeWithJQ\UpdateEmployeePV.cshtml" />
     <Content Include="Views\Employees\_AddSalaryInfo.cshtml" />
     <Content Include="Views\Employees\_ShowSalaryInfo.cshtml" />
+    <Content Include="Views\Employees\_SalaryDetailByYear.cshtml" />
+    <Content Include="Views\Employees\SalaryInfo.cshtml" />
+    <Content Include="Views\Employees\_EmployeeList.cshtml" />
+    <Content Include="Views\Employees\_CreateEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

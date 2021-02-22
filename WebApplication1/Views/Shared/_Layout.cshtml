@@ -198,11 +198,11 @@
                                 </li>
                             </ul>*@
                         </li>
-                        @*<li>
-                                <a href="table.html">
-                                    <i class="fas fa-table"></i>Tables
-                                </a>
-                            </li>*@
+                        <li id="sideNavSalaryInfo">
+                            <a class="js-arrow" href="~/Employees/SalaryInfo">
+                                <i class="fas fa-usd fa-1x"></i>Salary Informations
+                            </a>
+                        </li>
                         @*<li>
                                 <a href="form.html">
                                     <i class="far fa-check-square"></i>Forms
@@ -474,6 +474,32 @@
                     </div>
                 </div>
                 <div id="requestedPV">
+                    <!---------Employee Create Modal------------>
+                    <div id="EmployeeCreateModal" class="modal fade" tabindex="1" role="dialog" aria-hidden="true"
+                         data-backdrop="static">
+
+                        <div class="modal-dialog modal-lg" role="document">
+
+                            <div class="modal-content">
+                                <div class="modal-header flex-column">
+                                    <div>
+                                        <i class="fas fa-user-plus fa-lg" aria-hidden="true"></i>&nbsp; Create Employee
+                                    </div>
+                                </div>
+                                <div class="modal-body" id="EmployeeCreateCardBody">
+
+
+
+                                </div>
+                                <div class="modal-footer justify-content-end">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-primary" id="buttonUpdateSalaryInfo" onclick="SaveEmployeeCreate()">Create</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!---------Employee Create Modal Ends------------>
                     <!---------Delete Modal------------>
                     <div id="DeleteModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="staticModalLabel" aria-hidden="true"
                          data-backdrop="static">
@@ -499,7 +525,7 @@
                     <!---------Edit Modal------------>
                     <div id="EditModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
                          data-backdrop="static">
-                        
+
                         <div class="modal-dialog modal-lg" role="document">
                             <input type="hidden" id="selectedEditId" value="0" />
                             <div class="modal-content">
@@ -510,9 +536,6 @@
                                 </div>
                                 <div class="modal-body">
 
-                                    <div class="card">
-                                        <div class="card-header">Edit Employee Data</div>
-                                        <div class="card-body">
                                             <form id="employeeUpdateForm">
 
                                                 <input type="hidden" name="id" id="updateEmployeeId" value="0">
@@ -630,10 +653,6 @@
 
                                             </form>
 
-                                            
-                                        </div>
-                                    </div>
-
                                 </div>
                                 <div class="modal-footer justify-content-end">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -643,6 +662,57 @@
                         </div>
                     </div>
                     <!---------Edit Modal Ends------------>
+                    <!---------SalaryDetailByYear Modal------------>
+                    <div id="SalaryDetailByYear" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"
+                         data-backdrop="static">
+
+                        <div class="modal-dialog modal-lg" role="document">
+
+                            <div class="modal-content">
+                                @*<div class="modal-header flex-column">
+                                    <div>
+                                        <i class="zmdi zmdi-view-list zmdi-hc-2x" aria-hidden="true"></i>&nbsp; Salary Information
+                                    </div>
+                                </div>*@
+                                <div class="modal-body" id="SalaryDetailByYearCard">
+
+
+
+                                </div>
+                                @*<div class="modal-footer justify-content-end">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>*@
+                            </div>
+                        </div>
+                    </div>
+                    <!---------SalaryDetailByYear Modal Ends------------>
+                    <!---------Salary Info Update Modal------------>
+                    <div id="SalaryInfoUpdate" class="modal fade" tabindex="1" role="dialog" aria-hidden="true"
+                         data-backdrop="static">
+
+                        <div class="modal-dialog modal-lg" role="document">
+
+                            <div class="modal-content">
+                                <div class="modal-header flex-column">
+                                    <div>
+                                        <i class="zmdi zmdi-view-list zmdi-hc-2x" aria-hidden="true"></i>&nbsp; Update Salary Information
+                                    </div>
+                                </div>
+                                <div class="modal-body" id="SalaryInfoUpdateCard">
+
+
+
+                                </div>
+                                <div class="modal-footer justify-content-end">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button class="btn btn-primary" id="buttonUpdateSalaryInfo" onclick="UpdateSalaryInfo()">Update</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!---------Salary Info Update Modal Ends------------>
+
 
                 </div>
                 

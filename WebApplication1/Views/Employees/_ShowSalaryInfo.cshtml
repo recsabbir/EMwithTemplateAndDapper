@@ -4,8 +4,8 @@
     Layout = null;
 }
 
-<div class="form-row justify-content-start pb-4">
-    <div class="col-md-10">
+<div class="row justify-content-start pb-4">
+    <div class="col-md-12">
         <table id="tableSalaryInfo" class="table table-borderless table-data3">
             <thead class="">
                 <tr>
@@ -13,6 +13,7 @@
                     <th>Name</th>
                     <th>Year</th>
                     <th>Total Salary</th>
+                    <th>Action</th>
                 </tr>
             </thead>
 
@@ -28,6 +29,7 @@
                             <td>@item.name</td>
                             <td>@year.year</td>
                             <td>@year.sumSalary</td>
+                            <td><div class="table-data-feature"> <button class="item" title="Detail" onclick="ShowSalaryInfoByYear('@item.id-@year.year')"><i class="zmdi zmdi-view-list-alt"></i></button></div></td>
                         </tr>
                     }
 

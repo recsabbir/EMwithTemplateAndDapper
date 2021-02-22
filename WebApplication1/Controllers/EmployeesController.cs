@@ -39,6 +39,22 @@ namespace WebApplication1.Controllers
             return Json(employeeList, JsonRequestBehavior.AllowGet);
         }
 
+        // GET: Employees/GetEmployeeList
+        public ActionResult GetEmployeeList()
+        {
+
+            List<Employee> employeeList = new List<Employee>();
+            using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["EMEntity"].ConnectionString))
+            {
+
+                employeeList = db.Query<Employee>("Select * From Employees").ToList();
+            }
+
+
+            return PartialView("_EmployeeList", employeeList);
+        }
+        
+
 
         //GET: Employees/GetEmployee/5
         public JsonResult GetEmployee(int id)
@@ -54,6 +70,14 @@ namespace WebApplication1.Controllers
 
 
             return Json(employee, JsonRequestBehavior.AllowGet);
+        }
+
+        //GET: Employees/CreateEmployee
+        
+        public ActionResult CreateEmployee()
+        {
+            return PartialView("_CreateEmployee");
+
         }
 
 
@@ -301,7 +325,7 @@ namespace WebApplication1.Controllers
             if (emp.joining_date != employee.joining_date && employee.joining_date != null)
             {
 
-                sqlQuery += "joining_date='" + employee.joining_date.Value.Year + "-" + employee.joining_date.Value.Month + "-" + employee.joining_date.Value.Day + "'";
+                sqlQuery += ",joining_date='" + employee.joining_date.Value.Year + "-" + employee.joining_date.Value.Month + "-" + employee.joining_date.Value.Day + "'";
                 updateCount++;
                 
             }
@@ -532,7 +556,36 @@ namespace WebApplication1.Controllers
             return PartialView("_ShowSalaryInfo", emp);
         }
 
-        
+        // POST: Employees/ShowSalaryInfoByYear (id-year)
+        //[HttpPost]
+        public ActionResult ShowSalaryInfoByYear(string data)
+        {
+            var employee_id = data.Split('-')[0];
+            var _year = data.Split('-')[1];
+       
+            Employee emp = new Employee();
+            List<SalaryByYear> sal = new List<SalaryByYear>();
+
+            using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["EMEntity"].ConnectionString))
+            {
+
+                emp = db.Query<Employee>("Select id, name From Employees WHERE id="+employee_id).FirstOrDefault();
+            }
+
+            using (IDbConnection db = new SqlConnection(ConfigurationManager.ConnectionStrings["EMEntity"].ConnectionString))
+            {
+                emp.salaryByYear = db.Query<SalaryByYear>("SELECT year, month, salary FROM SalaryInfos WHERE employee_id=" + employee_id + " AND year=" + _year).ToList();
+            }
+            
+
+            return PartialView("_SalaryDetailByYear", emp);
+        }
+
+        public ActionResult SalaryInfo()
+        {
+            return View("SalaryInfo");
+        }
+
 
 
         //protected override void Dispose(bool disposing)

@@ -27,6 +27,9 @@ namespace WebApplication1.Models
         [NotMapped]
         public List<AnnualSalary> annualSalaries { get; set; }
 
+        [NotMapped]
+        public List<SalaryByYear> salaryByYear { get; set; }
+
         public Boolean CheckEqual(Employee emp)
         {
             if (this.id == emp.id && this.name == emp.name && this.dob == emp.dob

@@ -25,4 +25,11 @@ namespace WebApplication1.Models
         public int year { get; set; }
         public int sumSalary { get; set; }
     }
+
+    public class SalaryByYear
+    {
+        public int year { get; set; }
+        public int month { get; set; }
+        public int salary { get; set; }
+    }
 }

@@ -134,6 +134,15 @@
     width: auto;
 }
 
-.table-data-feature .item :hover {
+/*.table-data-feature .item :hover {
     background-color: #ff0000;
+}*/
+
+#salaryInfoEmployee {
+    position: relative;
+    z-index: 10000;
+}
+
+.ui-autocomplete {
+    z-index: 9999 !important;
 }
