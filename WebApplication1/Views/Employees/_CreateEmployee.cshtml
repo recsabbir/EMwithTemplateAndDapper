@@ -10,7 +10,7 @@
 
         <div class="col-md-9">
 
-            <div class="form-row justify-content-between pb-3">
+            <div class="row justify-content-between pb-3">
 
                 <div class="col-md-5">
                     <div class="form-group">
@@ -21,7 +21,7 @@
                 </div>
 
 
-                <div class="col-md-3 pl-1">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="createEmployeeBgroup">Blood Group</label>
                         <select class="form-control" id="createEmployeeBgroup" aria-describedby="bgroupHelp" name="bgroup">
@@ -39,7 +39,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 pl-1">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label for="createEmployeeDob">Date Of Birth</label>
                         <input type="date" class="form-control" id="createEmployeeDob" aria-describedby="dobHelp" name="dob" value="">
@@ -50,7 +50,7 @@
 
             </div>
 
-            <div class="form-row justify-content-around pb-4">
+            <div class="row justify-content-around pb-4">
                 <div class="col-md-5">
                     <div class="form-group">
                         <label for="createEmployeeNID">NID Number</label>
@@ -59,7 +59,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-3 pl-1">
+                <div class="col-md-3">
                     <div class="form-group">
                         <label for="createEmployeePhone">Phone Number</label>
                         <input type="text" class="form-control" id="createEmployeePhone" aria-describedby="phoneHelp" name="phone" placeholder="Enter Phone Number">
@@ -67,7 +67,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 pl-1">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label for="createEmployeeJoininDate">Joining Date</label>
                         <input type="date" class="form-control" id="createEmployeeJoininDate" aria-describedby="joiningDateHelp" name="joining_date" value="">
@@ -78,7 +78,7 @@
             </div>
 
             
-            <div class="form-row justify-content-start pb-4">
+            <div class="row justify-content-start pb-4">
                 <div class="col-md-5">
                     <div class="form-group">
                         <label for="createEmployeeEmail">Email Address</label>
@@ -87,7 +87,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-5 pl-1">
+                <div class="col-md-5">
                     <div class="form-group">
                         <label for="createEmployeeAddress">Present Address</label>
                         <input type="text" class="form-control" id="createEmployeeAddress" aria-describedby="addressHelp" name="address" placeholder="Enter Present Address">
@@ -112,7 +112,7 @@
             <div class="row justify-content-end">
                 <div class="col-md-10">
                     <div class="custom-file image-uploader">
-                        <input type="file" class="custom-file-input" id="customFileCreate" name="ImageFile">
+                        <input type="file" class="custom-file-input" id="customFileCreate" name="ImageFile" onchange="ChangePictureLabel_Create()">
                         <label class="custom-file-label" id="custom-file-label-create" for="customFile">Change</label>
                     </div>
                 </div>

@@ -6,7 +6,7 @@
 
 <div class="row justify-content-start pb-4">
     <div class="col-md-12">
-        <table id="tableSalaryInfo" class="table table-borderless table-data3">
+        <table id="tableSalaryInfo" class="table table-responsive-md table-hover table-salaryInformation">
             <thead class="">
                 <tr>
                     <th>#</th>
@@ -29,7 +29,7 @@
                             <td>@item.name</td>
                             <td>@year.year</td>
                             <td>@year.sumSalary</td>
-                            <td><div class="table-data-feature"> <button class="item" title="Detail" onclick="ShowSalaryInfoByYear('@item.id-@year.year')"><i class="zmdi zmdi-view-list-alt"></i></button></div></td>
+                            <td><span class="table-data-feature"> <button class="item" title="Detail" onclick="ShowSalaryInfoByYear('@item.id-@year.year')"><i class="zmdi zmdi-view-list-alt"></i></button></span></td>
                         </tr>
                     }
 

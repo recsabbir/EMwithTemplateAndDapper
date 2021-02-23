@@ -33,9 +33,7 @@
 
             $("#EmployeeCreateViewButton").click(function () {
                 GetCreateEmployeePage();
-                
                 $("#EmployeeCreateModal").modal("show");
-
             });
 
 
@@ -45,12 +43,12 @@
 
             });
 
-            $("#customFileCreate").on("change", function () {
-                var fileName = $(this).val().split("\\").pop().slice(0, 6);
-                $(this).siblings("#custom-file-label-create").addClass("selected").html(fileName);
+            //$("#customFileCreate").on("change", function () {
+            //    var fileName = $(this).val().split("\\").pop().slice(0, 6);
+            //    $("#custom-file-label-create").addClass("selected").html(fileName);
 
-            });
-            
+            //});
+
 
             $("#employeeUpdateForm :input").change(function () {
                 $("#employeeUpdateForm").data("changed", true);
@@ -64,8 +62,16 @@
                 DeleteEmployee();
             });
 
+            //$('[data-toggle="tooltip"]').tooltip()
             
         });
+
+        function ChangePictureLabel_Create() {
+            var fileName = $("#customFileCreate").val().split("\\").pop().slice(0, 6);
+            $("#custom-file-label-create").addClass("selected").html(fileName);
+        }
+        
+
 
         function GetEmployeeList() {
             $.ajax({
@@ -265,10 +271,17 @@
                 contentType: 'application/json; charset=utf-8',
                 //dataType: 'json',
                 success: function (_data) {
+                    console.log(_data);
                     //console.log("Delete Employee Success");
-                    GetEmployeeList();
-                    $("#DeleteModal").modal("hide");
-                    toastr.success('Successfully!!!', 'Employee Deleted', { timeOut: 2000 });
+                    if (_data == "True" ) {
+                        GetEmployeeList();
+                        $("#DeleteModal").modal("hide");
+                        toastr.success('Successfully!!!', 'Employee Deleted', { timeOut: 2000 });
+                    } else {
+                        $("#DeleteModal").modal("hide");
+                        toastr.error('Employee could not be deleted.', 'OOPS', { timeOut: 2000 });
+                    }
+                    
                     
                 },
                 error: function (res) {
@@ -437,7 +450,7 @@
                 obj[n['name']] = n['value'];
             });
 
-            console.log("BOJ Serialized :", obj);
+            //console.log("BOJ Serialized :", obj);
             var formData = new FormData();
 
             for (var prop in obj) {
@@ -465,7 +478,7 @@
                 },
                 error: function (res) {
                     console.log(res);
-                    location.reload(true);
+                    //location.reload(true);
                 }
             });
         }

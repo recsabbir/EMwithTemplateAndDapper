@@ -63,16 +63,16 @@
             <nav class="navbar-mobile">
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
-                        <li>
+                        <li id="#sideNavHome">
                             <a href="~/Home">
                                 <i class="fas fa-tachometer-alt"></i>Dashboard
                             </a>
                         </li>
-                        <li class="has-sub">
-                            <a class="js-arrow" href="#">
+                        <li class="" id="#sideNavEmployee">
+                            <a class="js-arrow" href="~/Employees">
                                 <i class="fas fa-user"></i>Employees
                             </a>
-                            <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
+                            @*<ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
                                 <li>
                                     <a href="">
                                         <i class="fas fa-user-plus"></i>Create
@@ -83,14 +83,15 @@
                                         <i class="fas fa-list-ul"></i>List
                                     </a>
                                 </li>
-                            </ul>
+
+                            </ul>*@
                         </li>
-                        @*<li>
-                                <a href="table.html">
-                                    <i class="fas fa-table"></i>Tables
-                                </a>
-                            </li>
-                            <li>
+                        <li>
+                            <a class="js-arrow" href="~/Employees/SalaryInfo">
+                                <i class="fas fa-usd fa-1x"></i>Salary Informations
+                            </a>
+                        </li>
+                            @*<li>
                                 <a href="form.html">
                                     <i class="far fa-check-square"></i>Forms
                                 </a>
@@ -512,7 +513,7 @@
                                     </div>
                                 </div>
                                 <div class="modal-body">
-                                    <p>Do you really want to delete these records? <br> This process cannot be undone.</p>
+                                    <p>Do you really want to delete this record? <br> This process cannot be undone.</p>
                                 </div>
                                 <div class="modal-footer justify-content-center">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

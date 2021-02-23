@@ -3,7 +3,7 @@
     Layout = null;
 }
 <form id="formSalaryInfo">
-    <div class="form-row justify-content-start pb-4">
+    <div class="row justify-content-start pb-4">
 
         <div class="col-md-3">
             <div class="form-group">
@@ -12,7 +12,7 @@
                 <small id="salaryInfoEmployeeHelp" class="form-text text-muted"> </small>
             </div>
         </div>
-        <div class="col-md-3 pl-4">
+        <div class="col-md-3">
             <div class="form-group">
                 <label for="salaryInfoYear">Year</label>
                 <select class="form-control" id="salaryInfoYear" aria-describedby="salaryInfoYearHelp" name="year" onchange="SelectSalaryInfoMonth()">
@@ -23,7 +23,7 @@
                 <small id="salaryInfoYearHelp" class="form-text text-muted"> </small>
             </div>
         </div>
-        <div class="col-md-3 pl-4">
+        <div class="col-md-3">
             <div class="form-group">
                 <label for="salaryInfoMonth">Month</label>
                 <select class="form-control" id="salaryInfoMonth" aria-describedby="salaryInfoMonthHelp" name="month" onchange="SelectSalaryInfoSalary()">
@@ -34,7 +34,7 @@
                 <small id="salaryInfoMonthHelp" class="form-text text-muted"> </small>
             </div>
         </div>
-        <div class="col-md-3 pl-4">
+        <div class="col-md-3">
             <div class="form-group">
                 <label for="salaryInfoSalary">Salary</label>
                 <input type="text" class="form-control" id="salaryInfoSalary" aria-describedby="salaryInfoSalaryHelp" name="salary" placeholder="Salary Amount" onchange="ClearHepSalary()"/>
